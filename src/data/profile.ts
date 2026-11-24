@@ -8,6 +8,8 @@ export const profile = {
   location: 'Pune, India',
   locationFull: 'Pune, Maharashtra, India',
   timezone: 'IST',
+  timezoneId: 'Asia/Kolkata',
+  focus: 'Mobile · Web · APIs',
   experience: '2+ years',
   email: 'dhagepranav30@gmail.com',
   phone: '+91 7038987047',

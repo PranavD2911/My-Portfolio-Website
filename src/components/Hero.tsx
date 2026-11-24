@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { profile } from '../data/profile';
@@ -13,7 +13,23 @@ const photo = Object.values(photos)[0];
 
 gsap.registerPlugin(ScrollTrigger);
 
+const clock = new Intl.DateTimeFormat('en-GB', {
+  timeZone: profile.timezoneId,
+  hour: '2-digit',
+  minute: '2-digit',
+});
+
+function useLocalTime() {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const id = window.setInterval(() => setNow(new Date()), 15_000);
+    return () => window.clearInterval(id);
+  }, []);
+  return clock.format(now);
+}
+
 export function Hero() {
+  const localTime = useLocalTime();
   const root = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
@@ -44,6 +60,27 @@ export function Hero() {
 
   return (
     <section className={styles.hero} ref={root} aria-labelledby="hero-title">
+      <dl className={styles.facts}>
+        <div data-hero="fade">
+          <dt>Experience</dt>
+          <dd>{profile.experience}</dd>
+        </div>
+        <div data-hero="fade">
+          <dt>Currently</dt>
+          <dd>{profile.currentRole}</dd>
+        </div>
+        <div data-hero="fade">
+          <dt>{profile.location.split(',')[0]} · local time</dt>
+          <dd>
+            <time>{localTime}</time> {profile.timezone}
+          </dd>
+        </div>
+        <div data-hero="fade">
+          <dt>Focus</dt>
+          <dd>{profile.focus}</dd>
+        </div>
+      </dl>
+
       <div className={styles.meta} data-hero="meta">
         <span>
           pranav.dev — full stack · {profile.location}

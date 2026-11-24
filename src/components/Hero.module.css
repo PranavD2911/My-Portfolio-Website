@@ -3,11 +3,40 @@
   --photo-w: min(clamp(240px, 30vw, 460px), 34svh);
   position: relative;
   min-height: calc(100svh - 110px);
-  /* The photo rises above the meta row; reserve room so it never runs under the header. */
-  padding: max(24px, calc(var(--photo-w) * 1.5 - var(--fs) * 1.5 - 56px)) var(--pad) 80px;
+  /* The photo rises above the meta row; reserve room so it never runs under the header.
+     The facts strip already fills about 80px of that room. */
+  padding: max(24px, calc(var(--photo-w) * 1.5 - var(--fs) * 1.5 - 136px)) var(--pad) 80px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+
+/* Pinned to the top of the hero; stops short of the photo column on the right. */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: start;
+  gap: 20px 48px;
+  max-width: calc(100% - var(--photo-w) - 48px);
+  margin: 0 0 auto;
+  padding-bottom: 32px;
+}
+
+.facts dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+  margin-bottom: 8px;
+}
+
+.facts dd {
+  margin: 0;
+  font-family: var(--disp);
+  font-weight: 600;
+  font-size: clamp(16px, 1.4vw, 22px);
+  line-height: 1.15;
+  text-transform: uppercase;
 }
 
 /* Stacked on the left so the photo, which rises above this row, never covers it. */
@@ -269,6 +298,10 @@
 }
 
 @media (max-width: 1200px) {
+  .facts {
+    grid-template-columns: repeat(2, auto);
+  }
+
   .bottom {
     max-width: 58%;
   }
@@ -291,6 +324,12 @@
     min-height: auto;
     padding-top: 24px;
     padding-bottom: 64px;
+  }
+
+  .facts {
+    max-width: none;
+    margin-bottom: 0;
+    padding-bottom: 28px;
   }
 
   .meta {
