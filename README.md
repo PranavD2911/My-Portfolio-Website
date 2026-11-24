@@ -37,3 +37,7 @@ The site is fully static, so any static host works. Use these settings:
 - Projects, experience, stack and process: `src/data/*.ts`
 - Portrait: `src/assets/photo.(jpg|jpeg|png|webp|avif)`
 - Résumé served for download: `public/Pranav_Dhage_Resume.pdf`
+
+## Deployed on vercel
+
+- https://pranav-dhage-portfolio.vercel.app
