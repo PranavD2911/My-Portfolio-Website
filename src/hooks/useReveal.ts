@@ -58,10 +58,14 @@ export function useReveal() {
         );
       });
 
-      const onLoad = () => ScrollTrigger.refresh();
+      let active = true;
+      const onLoad = () => active && ScrollTrigger.refresh();
       document.fonts?.ready.then(onLoad);
       window.addEventListener('load', onLoad);
-      return () => window.removeEventListener('load', onLoad);
+      return () => {
+        active = false;
+        window.removeEventListener('load', onLoad);
+      };
     });
 
     mm.add('(prefers-reduced-motion: reduce)', () => {

@@ -15,8 +15,8 @@ export function Navbar() {
   const menuBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
     if (!open) return;
+    document.body.style.overflow = 'hidden';
     // The rest of the page is unreachable while the full-screen menu covers it.
     const header = headerRef.current;
     const blocked = Array.from(header?.parentElement?.children ?? []).filter(
@@ -32,6 +32,7 @@ export function Navbar() {
     };
     window.addEventListener('keydown', onKey);
     return () => {
+      document.body.style.overflow = '';
       blocked.forEach((el) => (el.inert = false));
       window.removeEventListener('keydown', onKey);
     };

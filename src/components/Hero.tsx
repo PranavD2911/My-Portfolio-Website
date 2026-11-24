@@ -38,7 +38,7 @@ export function Hero() {
           scrollTrigger: { trigger: '[data-hero="photo"]', start: 'top bottom', end: 'bottom top', scrub: 0.8 },
         },
       );
-    }, root);
+    }, root.current ?? undefined);
     return () => mm.revert();
   }, []);
 
