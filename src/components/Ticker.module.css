@@ -1,0 +1,26 @@
+.ticker {
+  background: var(--lime);
+  border-bottom: var(--border);
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: max-content;
+  padding-right: 28px;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.ast {
+  display: inline-block;
+  font-style: normal;
+  animation: spin 7s linear infinite;
+}

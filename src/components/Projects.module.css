@@ -1,0 +1,88 @@
+.projects {
+  padding: var(--section-y) 0 var(--section-y) var(--pad);
+  overflow: hidden;
+}
+
+.headWrap {
+  margin-right: var(--pad);
+}
+
+.rail {
+  position: relative;
+  display: flex;
+  gap: 32px;
+  margin-top: 40px;
+  padding: 16px var(--pad) 24px 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.rail[data-free] {
+  scroll-snap-type: none;
+}
+
+.rail[data-dragging] {
+  cursor: grabbing;
+}
+
+.rail[data-dragging] * {
+  pointer-events: none;
+}
+
+.rail[data-dragging] > * {
+  scale: 0.975;
+}
+
+.rail:focus-visible {
+  outline-offset: -4px;
+}
+
+.dots {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.dots button {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: var(--border);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    width var(--dur) var(--ease-expo),
+    background 0.3s ease;
+}
+
+/* Invisible hit area so the 12px dot still gives a 24px tap target. */
+.dots button::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+}
+
+.dots button:hover {
+  background: var(--lime);
+}
+
+.dots button.dotActive {
+  width: 36px;
+  background: var(--ink);
+}
+
+@media (max-width: 600px) {
+  .rail {
+    gap: 16px;
+    padding-right: 20px;
+  }
+}

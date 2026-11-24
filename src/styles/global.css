@@ -1,0 +1,333 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--lime);
+}
+
+img,
+svg {
+  display: block;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--disp);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--lime);
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  background: var(--lime);
+  border: var(--border);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── Pill buttons ── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: var(--border);
+  cursor: pointer;
+  white-space: nowrap;
+  translate: var(--mx, 0) var(--my, 0);
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    box-shadow var(--dur-fast) var(--ease-spring),
+    translate 0.6s var(--ease-expo),
+    background 0.25s ease;
+}
+
+.pill--lime {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.pill--ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.pill--big {
+  font-size: 14px;
+  padding: 16px 34px;
+}
+
+.pill:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.pill:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+  transition-duration: 0.08s;
+}
+
+.pill--ghost:hover {
+  background: var(--ivory);
+}
+
+.pill .arr-svg {
+  height: 1.44em;
+  width: auto;
+  flex: none;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.pill:hover .arr-svg {
+  transform: translateX(5px);
+}
+
+.arr-down {
+  rotate: 90deg;
+}
+
+.pill:hover .arr-down {
+  transform: translateX(3px);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(20 22 13 / 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgb(20 22 13 / 0);
+  }
+}
+
+/* ── Tags ── */
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 18px;
+  border: var(--border);
+  border-radius: 999px;
+  background: var(--ivory);
+  white-space: nowrap;
+  transition:
+    background 0.3s ease,
+    transform 0.45s var(--ease-spring);
+}
+
+.tag:hover {
+  background: var(--mint);
+  transform: translateY(-3px) rotate(-2deg);
+}
+
+/* ── Highlight marks ── */
+.mk {
+  padding: 0 0.12em;
+  color: var(--ink);
+}
+
+.mk--lime {
+  background: var(--lime);
+}
+.mk--mint {
+  background: var(--mint);
+}
+.mk--gold {
+  background: var(--gold);
+}
+
+/* ── Breathing circle ── */
+@keyframes breathe {
+  0%,
+  100% {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: var(--ivory);
+  }
+  50% {
+    border-color: var(--lime);
+    color: var(--lime);
+    background: var(--ink);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Reveal (initial state; GSAP animates in) ── */
+.js-motion .reveal {
+  opacity: 0;
+  transform: translateY(48px);
+}
+
+.js-motion .reveal[data-reveal='left'] {
+  transform: translate(-64px, 32px);
+}
+
+.js-motion .reveal[data-reveal='right'] {
+  transform: translate(64px, 32px);
+}
+
+.mask-line {
+  display: block;
+  isolation: isolate;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.mask-line > .reveal {
+  display: block;
+  transform-origin: 0 0;
+}
+
+/* When a headline wraps, keep a highlight from painting over the line above it. */
+.mask-line .mk {
+  position: relative;
+  z-index: -1;
+}
+
+.js-motion .reveal[data-reveal='mask'] {
+  opacity: 1;
+  transform: translateY(115%) rotate(3deg);
+}
+
+/* ── Background wipe: fills up from below, drains out through the top ── */
+.wipe {
+  position: relative;
+  isolation: isolate;
+}
+
+.wipe::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--wipe, var(--lime));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--dur) var(--ease-expo);
+}
+
+.wipe:hover::before {
+  transform: scaleY(1);
+  transform-origin: bottom;
+}
+
+.wipe > * {
+  transition: translate var(--dur) var(--ease-expo);
+}
+
+/* ── Underline sweep: draws in from the left, leaves to the right ── */
+.sweep {
+  background: linear-gradient(currentColor, currentColor) no-repeat right bottom / 0 2px;
+  transition: background-size var(--dur) var(--ease-expo);
+}
+
+.sweep:hover {
+  background-position: left bottom;
+  background-size: 100% 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,84 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px 32px;
+  flex-wrap: wrap;
+  background: var(--ink);
+  color: var(--ivory);
+  padding: 80px var(--pad) 40px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.footer::before {
+  content: '';
+  flex-basis: 100%;
+  border-top: 2px dashed var(--olive);
+  margin-bottom: 8px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.brand span {
+  opacity: 0.6;
+}
+
+.logo {
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--lime);
+}
+
+.links {
+  display: flex;
+  gap: 12px;
+}
+
+.links span {
+  opacity: 0.35;
+}
+
+.links a {
+  opacity: 0.6;
+  padding: 6px 0 3px;
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease,
+    background-size var(--dur) var(--ease-expo);
+}
+
+.links a:hover {
+  opacity: 1;
+  color: var(--lime);
+}
+
+.links a.resume {
+  opacity: 1;
+  color: var(--lime);
+}
+
+.copy {
+  opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 56px;
+  }
+
+  .footer::before {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
